@@ -60,30 +60,4 @@ public class SecurityConfig{
                 );
         return http.build();
     }
-
-    @Bean
-    public AuthenticationManager authenticationManagerBean(){
-        return new AuthenticationManager() {
-            @Override
-            public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-                String username = authentication.getPrincipal() + "";
-                String password = authentication.getCredentials() + "";
-
-                User user = userService.findByUsername(username);
-                if (user == null) {
-                    throw new BadCredentialsException("1000");
-                }
-                if (!passwordEncoder.matches(password, user.getPassword())) {
-                    throw new BadCredentialsException("1000");
-                }
-                List<Role> roles = user.getRoles();
-                return new UsernamePasswordAuthenticationToken(username, null, mapRolesToGrantedAuthorities(roles));
-            }
-        };
-    }
-
-    private List<GrantedAuthority> mapRolesToGrantedAuthorities(List<Role> roles){
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
-    }
-
 }
