@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin/sensors")
-@CrossOrigin("*")
+@CrossOrigin(
+        origins = "*",
+        allowedHeaders = {"Authorization"}
+)
 public class SensorAdminController {
     private final SensorService sensorService;
 
