@@ -5,13 +5,16 @@ import com.example.labinventtaskbackend.models.User;
 import com.example.labinventtaskbackend.security.jwt.JwtTokenProvider;
 import com.example.labinventtaskbackend.services.AuthenticationService;
 import com.example.labinventtaskbackend.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
@@ -19,13 +22,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final UserService userService;
 
-    public AuthenticationServiceImpl(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenProvider = jwtTokenProvider;
-        this.userService = userService;
-    }
-
     @Override
+    @Transactional
     public String login(AuthenticationRequestDto requestDto) {
         try {
             String username = requestDto.getUsername();

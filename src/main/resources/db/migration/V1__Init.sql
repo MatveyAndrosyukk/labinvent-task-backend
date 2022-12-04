@@ -42,8 +42,8 @@ ALTER TABLE user_roles
         FOREIGN KEY (role_id) REFERENCES roles (id);
 
 INSERT INTO users(username, first_name, last_name, email, status, password) VALUES
-    ('mveyhf', 'Matvey', 'Androsyuk', 'matveyhf@gmail.com', 'ACTIVE', '$2a$04$aXXwX7Wff0pvGz9JdIwIDOyHS.33y8vHbZOL6ugH.95uywxMG3LUi'),
-    ('ivanhf', 'Ivan', 'Shostak', 'ivanhf@gmail.com', 'ACTIVE', '$2a$04$JT9Mm1OPId.jW2ZsAow.4OY1ylf.uFGh3buhO5jqrAq1TV1Zm9jre');
+    ('admin', 'Matvey', 'Androsyuk', 'matveyhf@gmail.com', 'ACTIVE', '$2a$04$qirUI5EkcMlapfYwxRO4.e/sLrSHVyuG4smLOnpYd2F3RHPnTDl9K'),
+    ('user', 'Ivan', 'Shostak', 'ivanhf@gmail.com', 'ACTIVE', '$2a$04$J2I8127bziPA2z1MmcFcCum7KmnZ1R56/oRI00ILyI2JIfRftwSlC');
 
 INSERT INTO roles(name) VALUES
     ('ROLE_USER'),

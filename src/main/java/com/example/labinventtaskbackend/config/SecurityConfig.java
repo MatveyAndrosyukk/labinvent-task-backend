@@ -2,6 +2,7 @@ package com.example.labinventtaskbackend.config;
 
 import com.example.labinventtaskbackend.security.jwt.JwtConfigurer;
 import com.example.labinventtaskbackend.security.jwt.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,12 +10,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig{
     private final JwtTokenProvider jwtTokenProvider;
-
-    public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
-        this.jwtTokenProvider = jwtTokenProvider;
-    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -27,9 +25,9 @@ public class SecurityConfig{
                         {
                             try {
                                 authz
-                                        .requestMatchers("/auth/**").permitAll()
-                                        .requestMatchers("/admin/sensors/**").hasAuthority("ROLE_ADMIN")
-                                        .requestMatchers("/sensors/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                                        .requestMatchers("/api/auth/**").permitAll()
+                                        .requestMatchers("/api/admin/sensors/**").hasAuthority("ROLE_ADMIN")
+                                        .requestMatchers("/api/sensors/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                                         .anyRequest().authenticated()
                                         .and()
                                         .apply(new JwtConfigurer(jwtTokenProvider));

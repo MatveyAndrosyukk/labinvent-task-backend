@@ -6,22 +6,19 @@ import com.example.labinventtaskbackend.models.User;
 import com.example.labinventtaskbackend.services.AuthenticationService;
 import com.example.labinventtaskbackend.services.UserService;
 import com.example.labinventtaskbackend.utils.RolesToStringConverter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 @CrossOrigin(
-        origins = "*"
+        origins = "http://localhost:4200"
 )
+@RequiredArgsConstructor
 public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
-
-    public AuthenticationController(UserService userService, AuthenticationService authenticationService) {
-        this.userService = userService;
-        this.authenticationService = authenticationService;
-    }
 
     @PostMapping()
     public ResponseEntity<AuthenticationResponseDto> login(@RequestBody AuthenticationRequestDto requestDto) {

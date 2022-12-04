@@ -1,10 +1,7 @@
 package com.example.labinventtaskbackend.security.jwt;
 
-import com.example.labinventtaskbackend.models.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

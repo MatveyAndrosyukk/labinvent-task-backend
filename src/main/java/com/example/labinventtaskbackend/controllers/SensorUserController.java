@@ -2,26 +2,22 @@ package com.example.labinventtaskbackend.controllers;
 
 import com.example.labinventtaskbackend.models.Sensor;
 import com.example.labinventtaskbackend.services.SensorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.processing.SupportedOptions;
 import java.util.List;
 
 @RestController
-@RequestMapping("/sensors")
+@RequestMapping("/api/sensors")
 @CrossOrigin(
         origins = "*",
         allowedHeaders = {"Authorization"}
 )
+@RequiredArgsConstructor
 public class SensorUserController {
     private final SensorService sensorService;
-
-    public SensorUserController(SensorService sensorService) {
-        this.sensorService = sensorService;
-    }
 
     @GetMapping
     public ResponseEntity<List<Sensor>> getAllSensors(){

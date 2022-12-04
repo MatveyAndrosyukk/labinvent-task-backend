@@ -3,6 +3,7 @@ package com.example.labinventtaskbackend.config;
 import com.example.labinventtaskbackend.models.Role;
 import com.example.labinventtaskbackend.models.User;
 import com.example.labinventtaskbackend.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,15 +18,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component("authenticationManagerBean")
+@RequiredArgsConstructor
 public class AuthenticationManagerImpl implements AuthenticationManager {
     private final UserService userService;
 
     private final BCryptPasswordEncoder passwordEncoder;
-
-    public AuthenticationManagerImpl(UserService userService, BCryptPasswordEncoder passwordEncoder) {
-        this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

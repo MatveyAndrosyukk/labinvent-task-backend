@@ -1,11 +1,17 @@
 package com.example.labinventtaskbackend.models;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "sensors")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Sensor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
